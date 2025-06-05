@@ -1,0 +1,13 @@
+<form [formGroup]="loginForm" (submit)="onSubmit()">
+  <div>
+    <label for="username">Tên đăng nhập / Email:</label>
+    <input id="username" type="text" formControlName="username">
+    <!-- Có thể thêm thông báo lỗi validation ở đây -->
+  </div>
+  <div>
+    <label for="password">Mật khẩu:</label>
+    <input id="password" type="password" formControlName="password">
+    <!-- Có thể thêm thông báo lỗi validation ở đây -->
+  </div>
+  <button type="submit" [disabled]="loginForm.invalid">Đăng nhập</button>
+</form>
