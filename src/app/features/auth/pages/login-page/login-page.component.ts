@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../../../core/services/auth.service';
+
 import { LoginCredentials } from '../../../../types/auth/login-credentials';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -29,7 +30,6 @@ export class LoginPageComponent {
     this.authService.login(credentials).subscribe({
       next: (response) => {
         console.log('Login successful', response);
-        this.router.navigate(['/dashboard']);
       },
       error: (error: HttpErrorResponse) => {
         console.error('Login failed', error);

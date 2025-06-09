@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { LoginCredentials } from '../../../../types/auth/login-credentials';
 import { CommonModule } from '@angular/common';
@@ -18,6 +18,10 @@ export class LoginFormComponent implements OnInit {
 
   loginForm!: FormGroup;
 
+  @ViewChild('signUp') signUpButton!: ElementRef;
+  @ViewChild('signIn') signInButton!: ElementRef;
+  @ViewChild('container') container!: ElementRef;
+
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -30,6 +34,18 @@ export class LoginFormComponent implements OnInit {
   onSubmit(): void {
     if (this.loginForm.valid) {
       this.loginSubmit.emit(this.loginForm.value);
+    }
+  }
+
+  activateRightPanel(): void {
+    if (this.container) {
+      this.container.nativeElement.classList.add('right-panel-active');
+    }
+  }
+
+  deactivateRightPanel(): void {
+    if (this.container) {
+      this.container.nativeElement.classList.remove('right-panel-active');
     }
   }
 }

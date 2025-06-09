@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject, of } from 'rxjs';
+import { Observable, BehaviorSubject, of, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { AuthApiService } from '../../apis/auth-api.service';
 import { LoginCredentials } from '../../types/auth/login-credentials';
@@ -48,8 +48,8 @@ export class AuthService {
       }),
       catchError(error => {
         this.logout();
-        console.error('Login failed:', error);
-        return of(error);
+        console.error('Login failed in service:', error);
+        return throwError(() => error);
       })
     );
   }
